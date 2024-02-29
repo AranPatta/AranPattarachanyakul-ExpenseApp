@@ -17,6 +17,93 @@
         tools:listitem="@layout/expense_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All" />
+
+            <Button
+                android:id="@+id/buttonFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Food" />
+
+            <Button
+                android:id="@+id/buttonEntertainment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entertainment" />
+
+            <Button
+                android:id="@+id/buttonHousing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Housing" />
+
+            <Button
+                android:id="@+id/buttonUtilities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Utilities" />
+
+            <Button
+                android:id="@+id/buttonFuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fuel" />
+
+            <Button
+                android:id="@+id/buttonAutomotive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Automotive" />
+
+            <Button
+                android:id="@+id/buttonMisc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Misc" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/startDateEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Start Date (dd/MM/yyyy)"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/endDateEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="End Date (dd/MM/yyyy)"
+            android:inputType="date" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/filterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date Filter" />
+
     <Button
         android:id="@+id/add_expense_fab"
         android:layout_width="wrap_content"

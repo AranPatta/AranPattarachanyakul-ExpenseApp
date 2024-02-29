@@ -29,14 +29,11 @@ class ExpenseAdapter(private val onClick: (Int) -> Unit) : ListAdapter<Expense, 
         private val expenseAmount: TextView = itemView.findViewById(R.id.expense_amount)
         private val expenseCategory: TextView = itemView.findViewById(R.id.expense_category)
         fun bind(expense: Expense) {
-            // Bind expense data to UI elements in itemView
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             expenseDate.text = dateFormat.format(expense.date)
 
-            // Assuming amount is a Double, format it as needed
             expenseAmount.text = String.format("$%.2f", expense.amount)
 
-            // Set the category text
             expenseCategory.text = expense.category
         }
 
