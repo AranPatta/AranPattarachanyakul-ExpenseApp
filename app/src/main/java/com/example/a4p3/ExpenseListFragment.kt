@@ -41,7 +41,6 @@ class ExpenseListFragment : Fragment() {
             adapter.submitList(expenses)
         }
 
-        // Set up the FloatingActionButton's click listener to navigate to the add/edit expense fragment
         binding.addExpenseFab.setOnClickListener {
             findNavController().navigate(ExpenseListFragmentDirections.actionExpenseListFragmentToAddEditExpenseFragment())
         }

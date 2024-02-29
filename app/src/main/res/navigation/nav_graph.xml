@@ -13,10 +13,6 @@
         <action
             android:id="@+id/action_expenseListFragment_to_addEditExpenseFragment"
             app:destination="@id/addEditExpenseFragment">
-            <argument
-                android:name="expenseId"
-                app:argType="integer"
-                android:defaultValue="-1" />
         </action>
     </fragment>
 
@@ -24,5 +20,10 @@
         android:id="@+id/addEditExpenseFragment"
         android:name="com.example.a4p3.AddEditExpenseFragment"
         android:label="Add/Edit Expense"
-        tools:layout="@layout/fragment_add_edit_expense" />
+        tools:layout="@layout/fragment_add_edit_expense">
+        <argument
+            android:name="expenseId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>

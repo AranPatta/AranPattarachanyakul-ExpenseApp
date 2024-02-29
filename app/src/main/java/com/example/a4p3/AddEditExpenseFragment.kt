@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.a4p3.R
 import com.example.a4p3.databinding.FragmentAddEditExpenseBinding
 import java.util.*
+
 
 class AddEditExpenseFragment : Fragment() {
 
@@ -18,6 +21,8 @@ class AddEditExpenseFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var expenseViewModel: ExpenseViewModel
+
+    private val args: AddEditExpenseFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +35,7 @@ class AddEditExpenseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         expenseViewModel = ViewModelProvider(this)[ExpenseViewModel::class.java]
-
+        val expenseId = args.expenseId
 
         binding.categorySpinner.adapter = ArrayAdapter(
             requireContext(),
@@ -39,17 +44,26 @@ class AddEditExpenseFragment : Fragment() {
         )
 
         binding.saveButton.setOnClickListener {
-            saveExpense()
+            val amountText = binding.amountEditText.text.toString()
+            val amount = if (amountText.isNotEmpty()) amountText.toDouble() else 0.0
+
+            val newExpense = Expense(
+                id = if (expenseId == -1) 0 else expenseId,
+                date = Date(),
+                amount = binding.amountEditText.text.toString().toDouble(),
+                category = binding.categorySpinner.selectedItem.toString(),
+            )
+            saveExpense(newExpense)
+            findNavController().popBackStack()
         }
     }
 
-    private fun saveExpense() {
-        val amount = binding.amountEditText.text.toString().toDoubleOrNull()
-        val category = binding.categorySpinner.selectedItem.toString()
-        if (amount != null) {
-            val expense = Expense(0, Date(), amount, category)
+
+    private fun saveExpense(expense: Expense) {
+        if (expense.id == 0) {
             expenseViewModel.insert(expense)
-            findNavController().popBackStack()
+        } else {
+            expenseViewModel.update(expense)
         }
     }
 

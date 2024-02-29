@@ -19,6 +19,9 @@ interface ExpenseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(expense: Expense)
 
+    @Update
+    suspend fun update(expense: Expense)
+
     @Query("SELECT * FROM expenses WHERE id = :id")
     fun getExpenseById(id: Int): Flow<Expense>
 }
